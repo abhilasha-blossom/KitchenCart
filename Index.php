@@ -10,8 +10,47 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         /* Landing Page Specific Overrides */
+        :root {
+            --background: 220 20% 6%;
+            --foreground: 40 20% 95%;
+            --card: 220 20% 8%;
+            --border: 220 15% 15%;
+            --muted: 220 15% 12%;
+            --muted-foreground: 220 10% 65%;
+            --primary: 150 50% 50%;
+        }
+
         body {
-            display: block; /* Override app-container flex */
+            display: block;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+        }
+
+        .card-elevated {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s, border-color 0.3s;
+        }
+        
+        .card-elevated:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Top Navigation */
@@ -19,10 +58,10 @@
             position: sticky;
             top: 0;
             z-index: 50;
-            background-color: hsl(var(--card) / 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid hsl(var(--border));
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding: 0 2rem;
             display: flex;
             align-items: center;
@@ -33,7 +72,7 @@
         .landing-nav .logo {
             font-size: 1.25rem;
             font-weight: 700;
-            color: hsl(var(--foreground));
+            color: white;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -57,17 +96,30 @@
             border-radius: calc(var(--radius) - 2px);
             font-size: 0.875rem;
             font-weight: 500;
-            color: hsl(var(--foreground));
+            color: white;
             transition: background-color 0.2s;
         }
 
         .btn-ghost:hover {
-            background-color: hsl(var(--muted));
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         /* Hero */
+        .hero-wrapper {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.85)), url('assets/images/landing_hero_bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -4rem; /* Offset sticky nav height */
+            padding-top: 4rem;
+        }
+
         .hero {
-            padding: 6rem 2rem 5rem;
+            padding: 4rem 2rem;
             text-align: center;
             max-width: 860px;
             margin: 0 auto;
@@ -78,9 +130,10 @@
             align-items: center;
             gap: 0.4rem;
             padding: 0.35rem 0.875rem;
-            background-color: hsl(var(--primary) / 0.1);
-            color: hsl(var(--primary));
-            border: 1px solid hsl(var(--primary) / 0.2);
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
             border-radius: 9999px;
             font-size: 0.8rem;
             font-weight: 600;
@@ -93,21 +146,34 @@
             line-height: 1.15;
             font-weight: 700;
             letter-spacing: -0.04em;
-            color: hsl(var(--foreground));
+            color: white;
             margin-bottom: 1.25rem;
         }
 
         .hero h1 span {
-            color: hsl(var(--primary));
+            color: #4ade80;
         }
 
         .hero p {
             font-size: 1.125rem;
-            color: hsl(var(--muted-foreground));
+            color: rgba(255, 255, 255, 0.85);
             max-width: 580px;
             margin: 0 auto 2.5rem;
             line-height: 1.7;
         }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
 
         .hero-actions {
             display: flex;
@@ -268,24 +334,42 @@
 
         /* CTA Section */
         .cta-section {
-            background-color: hsl(var(--primary));
-            padding: 5rem 2rem;
+            background: linear-gradient(135deg, hsl(150 50% 30%), hsl(150 60% 15%));
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem;
             text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(74, 222, 128, 0.15) 0%, transparent 50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
         }
 
         .cta-section h2 {
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
-            color: hsl(var(--primary-foreground));
-            margin-bottom: 1rem;
+            color: white;
+            margin-bottom: 1.25rem;
             letter-spacing: -0.03em;
         }
 
         .cta-section p {
-            color: hsl(var(--primary-foreground) / 0.8);
-            font-size: 1.0625rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.125rem;
             margin-bottom: 2.5rem;
-            max-width: 480px;
+            max-width: 520px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -294,17 +378,19 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem 1.75rem;
-            border-radius: var(--radius);
-            background-color: hsl(var(--primary-foreground));
-            color: hsl(var(--primary));
-            font-size: 1rem;
+            padding: 0.875rem 2rem;
+            border-radius: 9999px;
+            background-color: white;
+            color: hsl(150 60% 15%);
+            font-size: 1.0625rem;
             font-weight: 600;
-            transition: opacity 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .btn-white:hover {
-            opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         /* Footer */
@@ -352,37 +438,39 @@
 </nav>
 
 <!-- Hero -->
-<section class="hero">
-    <div class="hero-badge">
-        <i class="ph ph-sparkle"></i> B2B Procurement, Simplified
-    </div>
-    <h1>Buy smarter.<br><span>Spend less.</span> Cook better.</h1>
-    <p>KitchenCart connects restaurants with verified vendors — compare daily raw material prices, place orders instantly, and track every delivery in one place.</p>
-    <div class="hero-actions">
-        <a href="auth/register.php" class="btn-primary btn-lg">
-            <i class="ph ph-arrow-right" style="margin-right: 0.5rem;"></i> Start Ordering
-        </a>
-        <a href="#how-it-works" class="btn-ghost btn-lg" style="border: 1px solid hsl(var(--border));">
-            See How It Works
-        </a>
-    </div>
-</section>
+<div class="hero-wrapper">
+    <section class="hero">
+        <div class="hero-badge animate-fade-in-up">
+            <i class="ph ph-sparkle"></i> B2B Procurement, Simplified
+        </div>
+        <h1 class="animate-fade-in-up delay-100">Buy smarter.<br><span>Spend less.</span> Cook better.</h1>
+        <p class="animate-fade-in-up delay-200">KitchenCart connects restaurants with verified vendors — compare daily raw material prices, place orders instantly, and track every delivery in one place.</p>
+        <div class="hero-actions animate-fade-in-up delay-300">
+            <a href="auth/register.php" class="btn-primary btn-lg">
+                <i class="ph ph-arrow-right" style="margin-right: 0.5rem;"></i> Start Ordering
+            </a>
+            <a href="#how-it-works" class="btn-ghost btn-lg" style="border: 1px solid rgba(255,255,255,0.3); color: white;">
+                See How It Works
+            </a>
+        </div>
+    </section>
+</div>
 
 <!-- Stats Bar -->
 <div class="stats-bar">
-    <div class="stat-item">
+    <div class="stat-item scroll-animate">
         <span class="num">3x</span>
         <span class="label">Faster Procurement</span>
     </div>
-    <div class="stat-item">
+    <div class="stat-item scroll-animate">
         <span class="num">100%</span>
         <span class="label">Price Transparency</span>
     </div>
-    <div class="stat-item">
+    <div class="stat-item scroll-animate">
         <span class="num">Live</span>
         <span class="label">Daily Vendor Prices</span>
     </div>
-    <div class="stat-item">
+    <div class="stat-item scroll-animate">
         <span class="num">Real-time</span>
         <span class="label">Order Tracking</span>
     </div>
@@ -396,32 +484,32 @@
         <p class="section-subtitle">From price comparison to order delivery tracking — we've built it all into one clean platform.</p>
     </div>
     <div class="features-grid">
-        <div class="card-elevated feature-card">
+        <div class="card-elevated feature-card scroll-animate">
             <div class="feature-icon"><i class="ph ph-chart-bar"></i></div>
             <h3>Live Price Comparison</h3>
             <p>See daily prices updated by multiple vendors for every ingredient. Instantly spot the best deal with our "Best Price" indicator.</p>
         </div>
-        <div class="card-elevated feature-card">
+        <div class="card-elevated feature-card scroll-animate">
             <div class="feature-icon"><i class="ph ph-shopping-bag"></i></div>
             <h3>One-Click Ordering</h3>
             <p>Place orders directly from the price comparison view. Set your quantity and submit — it's that simple.</p>
         </div>
-        <div class="card-elevated feature-card">
+        <div class="card-elevated feature-card scroll-animate">
             <div class="feature-icon"><i class="ph ph-trend-up"></i></div>
             <h3>Price Trend Tracking</h3>
             <p>Track how prices have moved since yesterday. Make smarter buying decisions based on real historical context.</p>
         </div>
-        <div class="card-elevated feature-card">
+        <div class="card-elevated feature-card scroll-animate">
             <div class="feature-icon"><i class="ph ph-package"></i></div>
             <h3>Order Status Updates</h3>
             <p>Vendors update order status from Pending to Accepted to Delivered. You always know exactly where your goods are.</p>
         </div>
-        <div class="card-elevated feature-card">
+        <div class="card-elevated feature-card scroll-animate">
             <div class="feature-icon"><i class="ph ph-shield-check"></i></div>
             <h3>Verified Vendors</h3>
             <p>Only verified vendors can list products on KitchenCart. No more guessing about supplier reliability.</p>
         </div>
-        <div class="card-elevated feature-card">
+        <div class="card-elevated feature-card scroll-animate">
             <div class="feature-icon"><i class="ph ph-squares-four"></i></div>
             <h3>Analytics Dashboard</h3>
             <p>Track your total spend, active orders, and procurement trends from a clean, data-driven dashboard.</p>
@@ -438,7 +526,7 @@
             <p class="section-subtitle">KitchenCart makes daily procurement as smooth as possible for your team.</p>
         </div>
         <div class="steps-grid">
-            <div class="card-elevated step-card">
+            <div class="card-elevated step-card scroll-animate">
                 <div class="step-number">1</div>
                 <i class="ph ph-storefront" style="font-size: 2rem; color: hsl(var(--primary));"></i>
                 <h3>Vendors Post Prices</h3>
@@ -461,12 +549,14 @@
 </div>
 
 <!-- CTA -->
-<div class="cta-section">
-    <h2>Ready to transform your procurement?</h2>
-    <p>Join restaurants already saving time and money with KitchenCart every day.</p>
-    <a href="auth/register.php" class="btn-white">
-        <i class="ph ph-arrow-right" style="margin-right: 0.5rem;"></i> Get Started Now
-    </a>
+<div class="cta-section scroll-animate">
+    <div class="cta-content">
+        <h2>Ready to transform your procurement?</h2>
+        <p>Join restaurants already saving time and money with KitchenCart every day.</p>
+        <a href="auth/register.php" class="btn-white">
+            <i class="ph ph-arrow-right" style="margin-right: 0.5rem;"></i> Get Started Now
+        </a>
+    </div>
 </div>
 
 <!-- Footer -->
@@ -476,6 +566,22 @@
     </div>
     <p>© <?= date('Y') ?> KitchenCart. Built for the modern kitchen.</p>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Optional: stop observing once animated
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+    });
+</script>
 
 </body>
 </html>

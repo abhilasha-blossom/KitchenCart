@@ -26,8 +26,9 @@ if (isset($_SESSION['role'])) {
 <div class="auth-wrapper">
     <div class="auth-card">
         <div class="auth-title">
-            <div class="logo"><i class="ph-fill ph-storefront" style="color: hsl(var(--primary));"></i></div>
+            <div class="logo"><i class="ph-fill ph-storefront" style="color: #4ade80;"></i></div>
             KitchenCart
+            <div style="font-size: 0.875rem; font-weight: 400; color: rgba(255, 255, 255, 0.7); margin-top: -0.25rem;">Smart Supply for Smart Kitchens</div>
         </div>
         
         <?php
@@ -70,8 +71,8 @@ if (isset($_SESSION['role'])) {
             <button type="submit" class="btn-primary auth-btn">Sign In</button>
         </form>
 
-        <div style="text-align:center; margin-top:1.5rem; font-size:0.875rem; color:hsl(var(--muted-foreground));">
-            Don't have an account? <a href="register.php" style="color:hsl(var(--primary)); font-weight:500;">Sign Up</a>
+        <div style="text-align:center; margin-top:1.5rem; font-size:0.875rem; color:rgba(255, 255, 255, 0.7);">
+            Don't have an account? <a href="register.php" style="color:#4ade80; font-weight:500;">Sign Up</a>
         </div>
     </div>
 </div>

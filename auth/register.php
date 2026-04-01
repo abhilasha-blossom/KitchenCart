@@ -53,40 +53,40 @@ if (isset($_SESSION['role'])) {
 
         .role-card i {
             font-size: 1.75rem;
-            color: hsl(var(--muted-foreground));
+            color: rgba(255, 255, 255, 0.7);
             transition: color 0.2s;
         }
 
         .role-card span {
             font-size: 0.875rem;
             font-weight: 600;
-            color: hsl(var(--foreground));
+            color: white;
         }
 
         .role-card small {
             font-size: 0.75rem;
-            color: hsl(var(--muted-foreground));
+            color: rgba(255, 255, 255, 0.7);
             line-height: 1.3;
         }
 
         .role-option input:checked + .role-card {
-            border-color: hsl(var(--primary));
-            background-color: hsl(var(--primary) / 0.07);
+            border-color: #4ade80;
+            background-color: rgba(74, 222, 128, 0.1);
         }
 
         .role-option input:checked + .role-card i {
-            color: hsl(var(--primary));
+            color: #4ade80;
         }
 
         .auth-footer {
             text-align: center;
             margin-top: 1.5rem;
             font-size: 0.875rem;
-            color: hsl(var(--muted-foreground));
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .auth-footer a {
-            color: hsl(var(--primary));
+            color: #4ade80;
             font-weight: 500;
         }
     </style>
@@ -96,7 +96,7 @@ if (isset($_SESSION['role'])) {
 <div class="auth-wrapper">
     <div class="auth-card">
         <div class="auth-title">
-            <div class="logo"><i class="ph-fill ph-storefront" style="color: hsl(var(--primary));"></i></div>
+            <div class="logo"><i class="ph-fill ph-storefront" style="color: #4ade80;"></i></div>
             Create your account
         </div>
 
