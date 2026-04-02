@@ -1,0 +1,9 @@
+{
+    "name": "kitchencart/app",
+    "description": "B2B Procurement for Restaurants",
+    "type": "project",
+    "require": {
+        "php": "^8.0",
+        "ext-mysqli": "*"
+    }
+}
