@@ -10,36 +10,21 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         /* Landing Page Specific Overrides */
-        :root {
-            --background: 220 20% 6%;
-            --foreground: 40 20% 95%;
-            --card: 220 20% 8%;
-            --border: 220 15% 15%;
-            --muted: 220 15% 12%;
-            --muted-foreground: 220 10% 65%;
-            --primary: 150 50% 50%;
-        }
-
-        body {
-            display: block;
-            background-color: hsl(var(--background));
-            color: hsl(var(--foreground));
-        }
-
         .card-elevated {
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s, border-color 0.3s;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .card-elevated:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-            background-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 12px 48px rgba(31, 38, 135, 0.1);
+            border-color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
         }
 
         /* Scroll Animations */
@@ -58,10 +43,10 @@
             position: sticky;
             top: 0;
             z-index: 50;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.9);
             padding: 0 2rem;
             display: flex;
             align-items: center;
@@ -72,7 +57,7 @@
         .landing-nav .logo {
             font-size: 1.25rem;
             font-weight: 700;
-            color: white;
+            color: hsl(var(--foreground));
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -95,18 +80,18 @@
             padding: 0.5rem 1rem;
             border-radius: calc(var(--radius) - 2px);
             font-size: 0.875rem;
-            font-weight: 500;
-            color: white;
+            font-weight: 600;
+            color: hsl(var(--foreground));
             transition: background-color 0.2s;
         }
 
         .btn-ghost:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.05);
         }
 
         /* Hero */
         .hero-wrapper {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.85)), url('assets/images/landing_hero_bg.png');
+            background: linear-gradient(to bottom, rgba(246, 246, 244, 0.3), rgba(246, 246, 244, 0.8)), url('assets/images/light_kitchen_bg.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -130,13 +115,13 @@
             align-items: center;
             gap: 0.4rem;
             padding: 0.35rem 0.875rem;
-            background-color: rgba(255, 255, 255, 0.15);
-            color: #4ade80;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.7);
+            color: hsl(var(--primary));
+            border: 1px solid rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(8px);
             border-radius: 9999px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1.75rem;
             letter-spacing: 0.03em;
         }
@@ -144,22 +129,23 @@
         .hero h1 {
             font-size: clamp(2.25rem, 5vw, 3.75rem);
             line-height: 1.15;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: -0.04em;
-            color: white;
+            color: hsl(var(--foreground));
             margin-bottom: 1.25rem;
         }
 
         .hero h1 span {
-            color: #4ade80;
+            color: hsl(var(--primary));
         }
 
         .hero p {
             font-size: 1.125rem;
-            color: rgba(255, 255, 255, 0.85);
+            color: hsl(var(--muted-foreground));
             max-width: 580px;
             margin: 0 auto 2.5rem;
             line-height: 1.7;
+            font-weight: 500;
         }
 
         /* Animations */

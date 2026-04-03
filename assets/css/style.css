@@ -1,41 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Lovable Base Design Tokens (Dark Premium Theme) */
-  --background: 220 20% 6%;
-  --foreground: 40 20% 95%;
-  --card: 220 20% 8%;
-  --card-foreground: 40 20% 95%;
-  --primary: 150 50% 50%;
-  --primary-foreground: 220 20% 6%;
-  --secondary: 220 15% 15%;
-  --secondary-foreground: 40 20% 95%;
-  --muted: 220 15% 12%;
-  --muted-foreground: 220 10% 65%;
-  --accent: 150 50% 50%;
-  --accent-foreground: 40 20% 95%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 40 20% 95%;
-  --border: 220 15% 15%;
-  --input: 220 15% 15%;
-  --ring: 150 50% 50%;
+  /* Lovable Base Design Tokens (Light Premium Theme) */
+  --background: 40 25% 97%;
+  --foreground: 220 15% 20%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 15% 20%;
+  --primary: 150 50% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 40 20% 90%;
+  --secondary-foreground: 220 15% 20%;
+  --muted: 40 15% 92%;
+  --muted-foreground: 220 10% 45%;
+  --accent: 150 50% 40%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 65% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 40 20% 88%;
+  --input: 40 20% 88%;
+  --ring: 150 50% 40%;
   
   /* Status Colors */
   --success: 150 45% 40%;
-  --success-foreground: 40 25% 98%;
-  --warning: 35 85% 55%;
-  --warning-foreground: 220 15% 20%;
-  --trend-up: 150 60% 60%;
-  --trend-down: 0 60% 65%;
+  --success-foreground: 0 0% 100%;
+  --warning: 35 85% 45%;
+  --warning-foreground: 0 0% 100%;
+  --trend-up: 150 50% 40%;
+  --trend-down: 0 60% 55%;
   
   /* Sidebar Specific */
-  --sidebar-background: 220 20% 5%;
-  --sidebar-foreground: 220 10% 80%;
-  --sidebar-primary: 150 50% 50%;
-  --sidebar-primary-foreground: 220 20% 6%;
-  --sidebar-accent: 220 15% 15%;
-  --sidebar-accent-foreground: 40 20% 95%;
-  --sidebar-border: 220 15% 15%;
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 220 15% 30%;
+  --sidebar-primary: 150 50% 40%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 40 20% 94%;
+  --sidebar-accent-foreground: 220 15% 20%;
+  --sidebar-border: 40 20% 88%;
   
   /* Geometry */
   --radius: 1rem;
@@ -82,16 +82,16 @@ button {
   display: flex;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(to bottom, rgba(10, 14, 23, 0.85), rgba(10, 14, 23, 0.95)), url('../images/dark_kitchen_bg.png') no-repeat center center fixed;
+  background: linear-gradient(to bottom, rgba(246, 246, 244, 0.4), rgba(246, 246, 244, 0.8)), url('../images/light_kitchen_bg.png') no-repeat center center fixed;
   background-size: cover;
 }
 
 .sidebar {
   width: var(--sidebar-width);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.7);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -131,16 +131,16 @@ button {
 }
 
 .nav-links a:hover {
-  background-color: rgba(74, 222, 128, 0.1);
-  color: #4ade80;
-  box-shadow: inset 3px 0 0 #4ade80;
+  background-color: rgba(74, 222, 128, 0.08);
+  color: hsl(var(--primary));
+  box-shadow: inset 3px 0 0 hsl(var(--primary));
 }
 
 .nav-links a.active {
   background-color: rgba(74, 222, 128, 0.15);
-  color: #4ade80;
+  color: hsl(var(--primary));
   font-weight: 600;
-  box-shadow: inset 4px 0 0 #4ade80;
+  box-shadow: inset 4px 0 0 hsl(var(--primary));
 }
 
 .logout-link {
@@ -177,19 +177,19 @@ button {
 
 /* Cards */
 .card-elevated {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: var(--radius);
   padding: 1.5rem;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-elevated:hover {
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 48px rgba(31, 38, 135, 0.1);
+  border-color: rgba(255, 255, 255, 0.95);
   transform: translateY(-2px);
 }
 
