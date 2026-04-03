@@ -10,6 +10,10 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         /* Landing Page Specific Overrides */
+        body {
+            display: block;
+        }
+
         .card-elevated {
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(16px);
