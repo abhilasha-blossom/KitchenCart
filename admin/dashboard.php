@@ -56,6 +56,15 @@ $pending_orders = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as c F
             <p class="page-subtitle">Platform overview and management controls.</p>
         </div>
 
+        <!-- Decorative UI Banner -->
+        <div class="card-elevated" style="padding: 0; overflow: hidden; margin-bottom: 2rem; border-radius: var(--radius); position: relative; min-height: 180px;">
+            <img src="../assets/images/veggies_banner.png" alt="Fresh Produce" style="width: 100%; height: 180px; object-fit: cover; border-radius: calc(var(--radius) - 1px);">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); padding: 1.5rem; padding-top: 3rem;">
+                <h2 style="color: white; font-weight: 700; font-size: 1.5rem; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">KitchenCart Core System</h2>
+                <p style="color: rgba(255,255,255,0.9); margin: 0; font-weight: 500; font-size: 0.875rem;">Manage platform users, verify organic vendors, and monitor operations.</p>
+            </div>
+        </div>
+
         <!-- Stats Grid -->
         <div class="dashboard-grid">
             <div class="card-elevated stat-card">
