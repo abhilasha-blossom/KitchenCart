@@ -53,19 +53,19 @@ if (isset($_SESSION['role'])) {
 
         .role-card i {
             font-size: 1.75rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: hsl(var(--muted-foreground));
             transition: color 0.2s;
         }
 
         .role-card span {
             font-size: 0.875rem;
             font-weight: 600;
-            color: white;
+            color: hsl(var(--foreground));
         }
 
         .role-card small {
             font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: hsl(var(--muted-foreground));
             line-height: 1.3;
         }
 
@@ -82,7 +82,7 @@ if (isset($_SESSION['role'])) {
             text-align: center;
             margin-top: 1.5rem;
             font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: hsl(var(--muted-foreground));
         }
 
         .auth-footer a {
